@@ -316,6 +316,7 @@ public class DialogWrapper extends Wrapper implements DialogActivity {
 	 */
 	public ClientTransaction sendRequest(Request request) throws SipException, TransactionUnavailableException {
 		ensureCorrectDialogLocalTag(request);
+                org.mobicents.slee.resource.sip11.Utils.incrementRequestUsageParameters(request, ra.getUsageParams());
 		final ClientTransactionWrapper ctw = ra.getProviderWrapper().getNewDialogActivityClientTransaction(this,request);
 		if (request.getMethod().equals(Request.INVITE))
 			lastCancelableTransactionId = ctw.getActivityHandle();
@@ -350,6 +351,7 @@ public class DialogWrapper extends Wrapper implements DialogActivity {
 	public void sendRequest(ClientTransaction ct) throws TransactionDoesNotExistException, SipException {
 		final Request request = ct.getRequest();
 		ensureCorrectDialogLocalTag(request);
+                org.mobicents.slee.resource.sip11.Utils.incrementRequestUsageParameters(request, ra.getUsageParams());
 		if (tracer.isInfoEnabled()) {
 			tracer.info(String.valueOf(ct)+" sending request:\n"+request);
 		}
@@ -438,6 +440,7 @@ public class DialogWrapper extends Wrapper implements DialogActivity {
 				tracer.info(String.valueOf(cancelTransaction) + " sending request:\n"
 						+ cancelTransaction.getRequest());
 			}
+                        org.mobicents.slee.resource.sip11.Utils.incrementRequestUsageParameters(Request.CANCEL, ra.getUsageParams());
 			cancelTransaction.getWrappedClientTransaction().sendRequest();
 			return cancelTransaction;
 		} catch (NullPointerException npe) {
@@ -647,6 +650,7 @@ public class DialogWrapper extends Wrapper implements DialogActivity {
 		if (tracer.isInfoEnabled()) {
 			tracer.info(this+" sending ACK:\n"+arg0);
 		}
+                org.mobicents.slee.resource.sip11.Utils.incrementRequestUsageParameters(arg0, ra.getUsageParams());
 		wrappedDialog.sendAck(arg0);
 	}
 
@@ -655,6 +659,7 @@ public class DialogWrapper extends Wrapper implements DialogActivity {
 	 * @see javax.sip.Dialog#sendReliableProvisionalResponse(javax.sip.message.Response)
 	 */
 	public void sendReliableProvisionalResponse(Response arg0) throws SipException {
+            org.mobicents.slee.resource.sip11.Utils.incrementResponseUsageParameters(arg0, ra.getUsageParams());
 		wrappedDialog.sendReliableProvisionalResponse(arg0);		
 	}
 	

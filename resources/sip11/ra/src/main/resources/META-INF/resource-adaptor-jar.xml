@@ -4,19 +4,19 @@
 
 <resource-adaptor-jar>
 
-	<resource-adaptor id="jain-sip_1.1_RA">
+    <resource-adaptor id="jain-sip_1.1_RA">
 
-       <description>JAIN SIP Resource Adaptor</description>
+        <description>JAIN SIP Resource Adaptor</description>
 
-       <resource-adaptor-name>JainSipResourceAdaptor</resource-adaptor-name>
-       <resource-adaptor-vendor>net.java.slee.sip</resource-adaptor-vendor>
-       <resource-adaptor-version>1.2</resource-adaptor-version>
+        <resource-adaptor-name>JainSipResourceAdaptor</resource-adaptor-name>
+        <resource-adaptor-vendor>net.java.slee.sip</resource-adaptor-vendor>
+        <resource-adaptor-version>1.2</resource-adaptor-version>
 
-		<resource-adaptor-type-ref>
+        <resource-adaptor-type-ref>
             <resource-adaptor-type-name>JAIN SIP</resource-adaptor-type-name>
             <resource-adaptor-type-vendor>javax.sip</resource-adaptor-type-vendor>
             <resource-adaptor-type-version>1.2</resource-adaptor-type-version>
-       </resource-adaptor-type-ref>
+        </resource-adaptor-type-ref>
     
         <resource-adaptor-classes>
             <resource-adaptor-class>
@@ -24,45 +24,50 @@
                     org.mobicents.slee.resource.sip11.SipResourceAdaptor
                 </resource-adaptor-class-name>
             </resource-adaptor-class>
+            <resource-adaptor-usage-parameters-interface>
+                <resource-adaptor-usage-parameters-interface-name>
+                    org.mobicents.slee.resource.sip11.SipResourceAdaptorUsageParameters
+                </resource-adaptor-usage-parameters-interface-name>    
+            </resource-adaptor-usage-parameters-interface>
         </resource-adaptor-classes>
         
         <config-property>
-        	<description>the port to which the SIP stack should listen</description>
+            <description>the port to which the SIP stack should listen</description>
             <config-property-name>javax.sip.PORT</config-property-name>
             <config-property-type>java.lang.Integer</config-property-type>
             <config-property-value>5060</config-property-value>
         </config-property>
         
         <config-property>
-        	<description>the IP address to which the SIP stack should attach - if not specified the RA will use the underlying Java EE container's bind address address</description>
+            <description>the IP address to which the SIP stack should attach - if not specified the RA will use the underlying Java EE container's bind address address</description>
             <config-property-name>javax.sip.IP_ADDRESS</config-property-name>
             <config-property-type>java.lang.String</config-property-type>
             <config-property-value></config-property-value>
         </config-property>
         
         <config-property>
-        	<description>the list of supported transports, separated with ","</description>
+            <description>the list of supported transports, separated with ","</description>
             <config-property-name>javax.sip.TRANSPORT</config-property-name>
             <config-property-type>java.lang.String</config-property-type>
             <config-property-value>UDP</config-property-value>
         </config-property>
         
         <config-property>
-        	<description>the name of the class responsible for the heart beats exchanged with the platform's SIP Balancer - if not specified the JAIN SIP HA stack won't use such feature</description>
+            <description>the name of the class responsible for the heart beats exchanged with the platform's SIP Balancer - if not specified the JAIN SIP HA stack won't use such feature</description>
             <config-property-name>org.mobicents.ha.javax.sip.LoadBalancerHeartBeatingServiceClassName</config-property-name>
             <config-property-type>java.lang.String</config-property-type>
             <config-property-value>org.mobicents.ha.javax.sip.LoadBalancerHeartBeatingServiceImpl</config-property-value>
         </config-property>
         
         <config-property>
-        	<description>the list of SIP balancers, in the form of "HOST:PORT", separated by ";", it is only used if the heart beat service property is defined</description>
+            <description>the list of SIP balancers, in the form of "HOST:PORT", separated by ";", it is only used if the heart beat service property is defined</description>
             <config-property-name>org.mobicents.ha.javax.sip.BALANCERS</config-property-name>
             <config-property-type>java.lang.String</config-property-type>
             <config-property-value></config-property-value>
         </config-property>
         
         <config-property>
-        	<description>Sets the implementation of the load balancer elector, the module which elects a load balancer to be added in outgoing requests route. This property is required if BALANCERS is set.</description>
+            <description>Sets the implementation of the load balancer elector, the module which elects a load balancer to be added in outgoing requests route. This property is required if BALANCERS is set.</description>
             <config-property-name>org.mobicents.ha.javax.sip.LoadBalancerElector</config-property-name>
             <config-property-type>java.lang.String</config-property-type>
             <config-property-value>org.mobicents.ha.javax.sip.RoundRobinLoadBalancerElector</config-property-value>
@@ -76,8 +81,8 @@
         </description>
         <security-permission-spec>
             grant {
-                   permission java.net.SocketPermission "*", "connect,resolve";
-                  };
+            permission java.net.SocketPermission "*", "connect,resolve";
+            };
         </security-permission-spec>
     </security-permissions>
     
